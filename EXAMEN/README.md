@@ -44,10 +44,7 @@ Listar todos los autores:
      SELECT  id_autor, nombre
      FROM autores;
 Buscar autores por nombre:
-     SELECT  id_autor, nombre
-     FROM autores
-     WHERE nombre LIKE 'nombre_autor';
-Obtener todos los libros de un autor especifico:
+     SELECT  id_autor, nombrn autor especifico:
      SELECT id_libro, titulo, genero, isbn
      FROM libros
      JOIN autores ON autorid = id_autor
@@ -64,17 +61,44 @@ Obtener la ultima edicion de un libro:
      WHERE titulo = 'nombre_libro'
      ORDER BY fecha_publicacion DESC LIMIT 1;
 Contar cuantas ediciones hay de un libro especifico:
-     
+      SELECT id_libro, disponibilidad
+      FROM libros;
 Listar todas las transacciones de prestamo:
-     
+      SELECT id_transaccion, fecha_prestamo
+      FROM transacciones;
 Obtener los libros prestados actualmente:
-
+      SELECT id_libro, nombre
+      FROM libros 
+      JOIN transacciones ON fecha_prestamo
+      WHERE fecha_prestamo = 'nombre_libro';
 Contar con el numero de transacciones de un miembro especifico:
- 
-Listar todos los miembros de la biblioteca 
-Buscar un miembro por nombre
-Obtener las transacciones de un miembro especifico 
-Listar todos los libros y sus autores
-Obtener el historial de prestamos de un libro en especifico 
-Contar cuantos libros han sido prestados en total
-Listar todos los libros junto con su utlima edicion y estado de disponibilidad
+      SELECT id_transaccion, id_miembro, nombre
+      FROM transacciones
+      ORDER BY id_miembro DESC LIMIT 1;
+Listar todos los miembros de la biblioteca:
+      SELECT id_miembro, nombre
+      FROM miembros;
+Buscar un miembro por nombre:
+      SELECT id_miembro, nombre 
+      FROM miembros 
+      WHERE nombre LIKE 'nombre_miembro';
+Obtener las transacciones de un miembro especifico:
+      SELECT id_transaccion, id_miembro
+      FROM transacciones
+      WHERE id_miembro = 'nombre_miembro'
+      ORDER BY id_miembro DESC LIMIT 1;
+Listar todos los libros y sus autores:
+      SELECT id_libro, nombre AS autor
+      FROM libros
+      WHERE autor = 'nombre_autor';
+Obtener el historial de prestamos de un libro en especifico:
+      SELECT id_prestamos, fecha_prestamos, id_libro
+      FROM prestamos
+      WHERE id_libro = 'nombre_libro';
+Contar cuantos libros han sido prestados en total:
+      SELECT COUNT(*) AS total_libros
+      FROM prestamos;
+Listar todos los libros junto con su utlima edicion y estado de disponibilidad:
+      SELECT id_libro, disponibilidad
+      FROM libros
+      WHERE disponibilidad = 'disponible';

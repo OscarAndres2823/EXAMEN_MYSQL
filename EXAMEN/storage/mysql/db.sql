@@ -34,7 +34,17 @@ CREATE TABLE publicaciones (
     editor VARCHAR(50),
     FOREIGN KEY (id_libro) REFERENCES libros(id_libro) ON DELETE CASCADE
 );
-CREATE TABLE miembros (
+CREATE TABLE miembr
+CREATE TABLE prestamos (
+    id_prestamo INT PRIMARY KEY AUTO_INCREMENT,
+    id_miembro INT,
+    id_libro INT,
+    fecha_prestamo DATE,
+    fecha_devolucion DATE,
+    estado VARCHAR(20) DEFAULT 'pendiente',
+    FOREIGN KEY (id_miembro) REFERENCES miembros(id_miembro),
+    FOREIGN KEY (id_libro) REFERENCES libros(id_libro)
+);os (
     id_miembro INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL
@@ -48,4 +58,16 @@ CREATE TABLE transacciones (
     fecha_devolucion DATE,
     FOREIGN KEY (id_libro) REFERENCES libros(id_libro) ON DELETE CASCADE,
     FOREIGN KEY (id_miembro) REFERENCES miembros(id_miembro) ON DELETE CASCADE
+);
+
+
+CREATE TABLE prestamos (
+    id_prestamo INT PRIMARY KEY AUTO_INCREMENT,
+    id_miembro INT,
+    id_libro INT,
+    fecha_prestamo DATE,
+    fecha_devolucion DATE,
+    estado VARCHAR(20) DEFAULT 'pendiente',
+    FOREIGN KEY (id_miembro) REFERENCES miembros(id_miembro),
+    FOREIGN KEY (id_libro) REFERENCES libros(id_libro)
 );
